@@ -19,6 +19,7 @@ import { toast } from "../ui/toast";
 import { Spinner } from "../ui/spinner";
 import Link from "next/link";
 import GoogleLoginComponent from "../modules/goole-login/GoogleLogin";
+import { getErrorMessage } from "@/lib/getErrorMessage";
 
 export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
@@ -57,8 +58,7 @@ export default function LoginForm() {
                 onError: (err) => {
                     toast.add({
                         title: "Authorization failure",
-                        description:
-                            err.message || "Something went wrong. Please try again",
+                        description:getErrorMessage(err),
                         type: "error",
                     });
                 },

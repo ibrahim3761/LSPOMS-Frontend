@@ -20,6 +20,7 @@ import z from "zod";
 import { useRegistration } from "@/hooks";
 import { toast } from "../ui/toast";
 import { Spinner } from "../ui/spinner";
+import { getErrorMessage } from "@/lib/getErrorMessage";
 
 
 
@@ -77,8 +78,7 @@ export function RegisterForm() {
         onError: (err) => {
           toast.add({
             title: "Authorization failure",
-            description:
-              err.message || "Something went wrong. Please try again",
+            description:getErrorMessage(err),
             type: "error",
           });
         },

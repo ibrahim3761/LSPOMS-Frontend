@@ -15,12 +15,17 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { Field, FieldDescription, FieldError, FieldLabel } from "../ui/field";
 import { useEffect, useState } from "react";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { useVerifyAccount } from "@/hooks";
+import { useVerifyAccount, useVerifyTechnicianAccount } from "@/hooks";
 import { toast } from "../ui/toast";
+import { getErrorMessage } from "@/lib/getErrorMessage";
 
 const RESEND_COOLDOWN = 120;
 
-export default function VerifyAccountForm() {
+export default function VerifyAccountForm({
+  mode = "customer",
+}: {
+  mode: "customer" | "technician";
+}) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -28,7 +33,11 @@ export default function VerifyAccountForm() {
   const [isInvalid, setIsInvalid] = useState(false);
   const [resendTimer, setResendTimer] = useState(RESEND_COOLDOWN);
 
-  const { mutate: verify, isPending } = useVerifyAccount();
+  const { mutate: verifyCustomer, isPending: customerPending } = useVerifyAccount();
+  const { mutate: verifyTechnician, isPending: technicianPending } = useVerifyTechnicianAccount();
+
+  const verify = mode === "technician" ? verifyTechnician : verifyCustomer;
+  const isPending = mode === "technician" ? technicianPending : customerPending;
 
   const email = searchParams.get("email") || "";
 
@@ -39,9 +48,7 @@ export default function VerifyAccountForm() {
   }, [email]);
 
   useEffect(() => {
-    if (resendTimer <= 0) {
-      return;
-    }
+    if (resendTimer <= 0) return;
 
     const timer = setTimeout(() => {
       setResendTimer((prev) => prev - 1);
@@ -69,18 +76,27 @@ export default function VerifyAccountForm() {
             return;
           }
 
+          if (mode === "technician") {
+            toast.add({
+              title: "Verification Successful",
+              description: "An admin will review your application. Please check your email in a few days.",
+              type: "success",
+            });
+            router.push("/");
+            return;
+          }
+
           toast.add({
             title: "Verification Successful",
             description: "Welcome onboard",
             type: "success",
           });
-          router.push("/");
+          router.push("/login");
         },
         onError: (err) => {
           toast.add({
             title: "Verification failure",
-            description:
-              err.message || "Something went wrong. Please try again",
+            description: getErrorMessage(err),
             type: "error",
           });
         },
@@ -88,16 +104,16 @@ export default function VerifyAccountForm() {
     );
   };
 
-  if (!email) {
-    return null;
-  }
+  if (!email) return null;
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Verify Account</CardTitle>
         <CardDescription>
-          Please provide the OTP we send you in your email
+          {mode === "technician"
+            ? "Please verify your email to complete your technician application"
+            : "Please provide the OTP we sent to your email"}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -115,9 +131,7 @@ export default function VerifyAccountForm() {
               maxLength={6}
               onChange={(value) => {
                 setOtp(value);
-                if (isInvalid) {
-                  setIsInvalid(false);
-                }
+                if (isInvalid) setIsInvalid(false);
               }}
               value={otp}
               autoComplete="off"
@@ -139,12 +153,14 @@ export default function VerifyAccountForm() {
                 errors={[{ message: "Invalid Code. Please try again" }]}
               />
             )}
-            <FieldDescription>Resend in {resendTimer}</FieldDescription>
+            <FieldDescription>Resend in {resendTimer}s</FieldDescription>
           </Field>
         </form>
       </CardContent>
       <CardFooter>
-        <Button disabled={resendTimer > 0}>Resend</Button>
+        <Button disabled={resendTimer > 0} variant="outline">
+          Resend
+        </Button>
         <Button type="submit" form="otp-form" disabled={isPending}>
           {isPending ? "Verifying..." : "Submit"}
         </Button>

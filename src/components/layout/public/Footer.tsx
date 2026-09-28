@@ -6,7 +6,7 @@ import Link from "next/link";
 const footerLinks = {
   product: [
     { name: "Home", url: "/" },
-    { name: "About", url: "/about" },
+    { name: "About", url: "/about-us" },
     { name: "Services", url: "/services" },
     { name: "Outages", url: "/outages" },
     { name: "Contact", url: "/contact" },

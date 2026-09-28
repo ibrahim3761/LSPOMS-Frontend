@@ -2,7 +2,7 @@ import { ofetch } from "ofetch";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const apiClient = ofetch.create({
+const apiClient = ofetch.create({
   baseURL: BASE_URL,
   onRequest({ options }) {
     if (typeof window !== "undefined") {
@@ -22,3 +22,5 @@ export const apiClient = ofetch.create({
     }
   },
 });
+
+export default apiClient;

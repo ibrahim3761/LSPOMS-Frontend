@@ -12,8 +12,10 @@ const apiClient = ofetch.create({
       }
     }
   },
-  onResponseError({ response }) {
-    if (response.status === 401) {
+  onResponseError({ request, response }) {
+    const url = typeof request === "string" ? request : request.url;
+
+    if (response.status === 401 && !url.includes("/auth/login")) {
       if (typeof window !== "undefined") {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");

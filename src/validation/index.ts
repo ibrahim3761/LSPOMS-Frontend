@@ -1,2 +1,3 @@
 export * from "./auth.validation"
 export * from "./technician.validation"
+export * from "./user.validation"

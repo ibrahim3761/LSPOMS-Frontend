@@ -15,3 +15,10 @@ export interface TechnicianApplicationPayload {
   resume: File;
   data: TechnicianApplicationData;
 }
+
+export interface UpdateTechnicianProfilePayload {
+  address?: string;
+  bio?: string;
+  contactNumber?: string;
+  experienceYears?: number;
+}

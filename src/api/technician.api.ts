@@ -1,7 +1,7 @@
 // technician.api.ts
 
 import apiClient from "@/lib/apiClient";
-import { TechnicianApplicationPayload, VerifyAccountPayload } from "@/types";
+import { TechnicianApplicationPayload, UpdateTechnicianProfilePayload, VerifyAccountPayload } from "@/types";
 
 export function applyAsTechnician(
   payload: TechnicianApplicationPayload,
@@ -24,4 +24,8 @@ export function verifyTechnicianAccount(
     method: "POST",
     body: payload,
   });
+}
+
+export function updateTechnicianProfile(payload : UpdateTechnicianProfilePayload) {
+  return apiClient("/technician/update-my-profile", { method: "PATCH", body: payload });
 }

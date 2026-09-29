@@ -13,7 +13,7 @@ import {
 import { loginSchema } from "@/validation";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
-import { useLogin } from "@/hooks";
+import { useForgotPassword, useLogin } from "@/hooks";
 import { useRouter } from "next/navigation";
 import { toast } from "../ui/toast";
 import { Spinner } from "../ui/spinner";
@@ -26,6 +26,8 @@ export default function LoginForm() {
     const router = useRouter();
 
     const { mutate: login, isPending: loginPending } = useLogin();
+    const { mutate: forgotPassword, isPending: forgotPending } =
+        useForgotPassword();
 
     const form = useForm({
         defaultValues: {
@@ -58,13 +60,48 @@ export default function LoginForm() {
                 onError: (err) => {
                     toast.add({
                         title: "Authorization failure",
-                        description:getErrorMessage(err),
+                        description: getErrorMessage(err),
                         type: "error",
                     });
                 },
             });
         },
     });
+
+    const handleForgotPassword = () => {
+        const email = form.getFieldValue("email");
+
+        if (!email) {
+            toast.add({
+                title: "Email required",
+                description: "Please enter your email first",
+                type: "error",
+            });
+            return;
+        }
+
+        forgotPassword(
+            { email },
+            {
+                onSuccess: () => {
+                    toast.add({
+                        title: "OTP Sent",
+                        description: "Check your email for the reset OTP",
+                        type: "success",
+                    });
+                    const params = new URLSearchParams({ email });
+                    router.push(`/reset-password?${params.toString()}`);
+                },
+                onError: (err) => {
+                    toast.add({
+                        title: "Failed",
+                        description: getErrorMessage(err),
+                        type: "error",
+                    });
+                },
+            }
+        );
+    };
 
     return (
         <div className="flex flex-col gap-5">
@@ -139,7 +176,18 @@ export default function LoginForm() {
                                         </button>
                                     </div>
                                     {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                    <div className="flex items-center justify-between">
+                                        <button
+                                            type="button"
+                                            disabled={forgotPending}
+                                            className="text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-primary disabled:pointer-events-none disabled:opacity-50"
+                                            onClick={handleForgotPassword}
+                                        >
+                                            Forgot password?
+                                        </button>
+                                    </div>
                                 </Field>
+
                             );
                         }}
                     </form.Field>

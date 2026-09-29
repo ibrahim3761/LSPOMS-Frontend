@@ -22,3 +22,12 @@ export function getMe() {
 export function googleOAuth(payload: { idToken: string }) {
   return apiClient("/auth/google", { method: "POST", body: payload });
 }
+
+
+export function forgotPassword(payload: { email: string }) {
+  return apiClient("/auth/forgot-password", { method: "POST", body: payload });
+}
+
+export function resetPassword(payload: { email: string; otp: string; newPassword: string }) {
+  return apiClient("/auth/reset-password", { method: "POST", body: payload });
+}

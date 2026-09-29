@@ -131,11 +131,9 @@ export default function Header() {
                 {/* Mobile hamburger */}
                 <div className="md:hidden">
                     <Sheet open={open} onOpenChange={setOpen}>
-                        <SheetTrigger>
-                            <Button variant="ghost" size="icon">
-                                <Menu className="size-5" />
-                                <span className="sr-only">Toggle menu</span>
-                            </Button>
+                        <SheetTrigger render={<Button variant="ghost" size="icon" />}>
+                            <Menu className="size-5" />
+                            <span className="sr-only">Toggle menu</span>
                         </SheetTrigger>
                         <SheetContent side="right" className="w-72">
                             <div className="flex flex-col h-full ">

@@ -1,3 +1,4 @@
+import AuthGuard from "@/components/auth/auth-guard";
 import { ReactNode } from "react";
 
 export default function layout({
@@ -6,7 +7,7 @@ export default function layout({
 }) {
   return (
     <div>
-      {children}
+      <AuthGuard>{children}</AuthGuard>
     </div>
   );
 }

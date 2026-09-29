@@ -20,10 +20,12 @@ import { Spinner } from "../ui/spinner";
 import Link from "next/link";
 import GoogleLoginComponent from "../modules/goole-login/GoogleLogin";
 import { getErrorMessage } from "@/lib/getErrorMessage";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
+    const queryClient = useQueryClient();
 
     const { mutate: login, isPending: loginPending } = useLogin();
     const { mutate: forgotPassword, isPending: forgotPending } =
@@ -55,7 +57,10 @@ export default function LoginForm() {
                         description: "Welcome back",
                         type: "success",
                     });
+
+                    queryClient.invalidateQueries({ queryKey: ["user"] });
                     router.push("/");
+
                 },
                 onError: (err) => {
                     toast.add({

@@ -1,2 +1,7 @@
 export * from "./auth.api"
 export * from "./technician.api"
+export * from "./user.api"
+export * from "./area.api"
+export * from "./outage.api"
+export * from "./payment.api"
+export * from "./analytics.api"

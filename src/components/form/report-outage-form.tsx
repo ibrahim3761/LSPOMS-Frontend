@@ -22,6 +22,7 @@ import { toast } from "@/components/ui/toast";
 import { useReportOutage, useGetPublicAreas } from "@/hooks";
 import { getErrorMessage } from "@/lib/getErrorMessage";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const reportOutageSchema = z.object({
     areaId: z.string().min(1, "Please select an area"),
@@ -33,6 +34,7 @@ export default function ReportOutageForm() {
     const { mutate: reportOutage, isPending } = useReportOutage();
     const { data: areasData, isLoading: areasLoading } = useGetPublicAreas();
     const areas = areasData?.data ?? [];
+    const queryClient = useQueryClient();
 
     const form = useForm({
         defaultValues: {
@@ -58,6 +60,7 @@ export default function ReportOutageForm() {
                         description: "Your report has been submitted successfully",
                         type: "success",
                     });
+                    queryClient.invalidateQueries({ queryKey: ["my-reports"] });
                     router.push("/dashboard/my-reports");
                 },
                 onError: (err) => {

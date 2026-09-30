@@ -1,4 +1,4 @@
-export type PaymentStatus = "PAID" | "PENDING" | "FAILED";
+export type PaymentStatus = "PAID" | "PENDING" | "FAILED" | "CANCELLED";
 
 export interface IPackage {
   id: string;

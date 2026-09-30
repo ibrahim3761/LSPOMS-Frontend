@@ -3,9 +3,7 @@ const prefix = "/dashboard";
 export const customerRoutes = [
   {
     title: "Overview",
-    items: [
-      { title: "Dashboard", url: `${prefix}` },
-    ],
+    items: [{ title: "Dashboard", url: `${prefix}` }],
   },
   {
     title: "Outages",
@@ -16,8 +14,6 @@ export const customerRoutes = [
   },
   {
     title: "Payments",
-    items: [
-      { title: "My Payments", url: `${prefix}/payments` },
-    ],
+    items: [{ title: "My Payments", url: `${prefix}/payments` }],
   },
 ];

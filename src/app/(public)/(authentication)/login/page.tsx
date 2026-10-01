@@ -1,8 +1,15 @@
 /** biome-ignore-all lint/performance/noImgElement: <explanation> */
 import Logo from "@/assets/svg/Logo"
 import LoginForm from "@/components/form/login-form"
+import { createMetadata } from "@/utils/metadata.util";
 import { GalleryVerticalEnd } from "lucide-react"
 import Link from "next/link"
+
+export const metadata = createMetadata({
+  title: "Login",
+  description: "Login to your LSPOMS account to manage your power outage reports and subscriptions.",
+  path: "/login",
+});
 
 
 export default function LoginPage() {

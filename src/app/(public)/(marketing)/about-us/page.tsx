@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { createMetadata } from "@/utils";
 import {
   CalendarClock,
   CheckCircle2,
@@ -7,17 +8,15 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "About Us | LSPOMS",
-  description:
-    "LSPOMS brings load shedding schedules, outage reports and repair updates into one place for residents, technicians and administrators.",
-};
+export const metadata = createMetadata({
+  title: "About Us",
+  description: "Learn about LSPOMS and our mission to improve power outage management in Bangladesh.",
+  path: "/about",
+});
 
-// Same container as the header and footer so the edges line up
 const container = "max-w-screen-2xl mx-auto px-6 lg:px-10";
 
 const storyPoints = [

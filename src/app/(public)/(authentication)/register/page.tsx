@@ -1,7 +1,13 @@
 import Logo from "@/assets/svg/Logo";
 import { RegisterForm } from "@/components/form/register-form";
-
+import { createMetadata } from "@/utils";
 import Link from "next/link";
+
+export const metadata = createMetadata({
+  title: "Register",
+  description: "Create a new LSPOMS account to start reporting and tracking power outages in your area.",
+  path: "/register",
+});
 
 export default function RegisterPage() {
   return (

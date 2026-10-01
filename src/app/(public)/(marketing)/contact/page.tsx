@@ -1,10 +1,16 @@
 /** biome-ignore-all lint/a11y/useAnchorContent: <explanation> */
 import { Button } from "@/components/ui/button";
+import { createMetadata } from "@/utils";
 import { Clock, Mail, MapPin, MessageCircleQuestion, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Same container as the header, footer and about page so the edges line up
+export const metadata = createMetadata({
+  title: "Contact",
+  description: "Get in touch with the LSPOMS team for support or inquiries.",
+  path: "/contact",
+});
+
 const container = "max-w-screen-2xl mx-auto px-6 lg:px-10";
 
 const contactDetails = [

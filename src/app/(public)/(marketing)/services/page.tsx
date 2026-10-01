@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { createMetadata } from "@/utils/metadata.util";
 import {
   BellRing,
   CalendarClock,
@@ -11,7 +12,12 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-// Same container as the header, footer and other marketing pages so the edges line up
+export const metadata = createMetadata({
+  title: "Services",
+  description: "Explore our power outage management services including real-time tracking and premium subscriptions.",
+  path: "/services",
+});
+
 const container = "max-w-screen-2xl mx-auto px-6 lg:px-10";
 
 const services = [

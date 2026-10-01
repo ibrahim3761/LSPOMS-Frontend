@@ -11,6 +11,13 @@ export interface ITechnician {
   experienceYears: number;
 }
 
+export interface IReporter {
+  id: string;
+  name: string;
+  email: string;
+  imageUrl?: string;
+}
+
 export interface IUnexpectedOutage {
   id: string;
   description: string;
@@ -24,6 +31,7 @@ export interface IUnexpectedOutage {
   updatedAt: string;
   area: IArea;
   technician: ITechnician | null;
+  reporter?: IReporter;
 }
 
 export interface ReportOutagePayload {

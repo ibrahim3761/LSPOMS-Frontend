@@ -77,3 +77,8 @@ export const updateTechnicianProfileSchema = z.object({
   contactNumber: z.string().trim().min(5, "Contact number is invalid"),
   experienceYears: z.number().int().min(0, "Experience years cannot be negative"),
 });
+
+export const updateOutageStatusSchema = z.object({
+  status: z.enum(["IN_PROGRESS", "RESOLVED"]),
+  note: z.string().trim().max(500, "Note cannot exceed 500 characters"),
+});

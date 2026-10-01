@@ -1,7 +1,7 @@
 // technician.api.ts
 
 import apiClient from "@/lib/apiClient";
-import { TechnicianApplicationPayload, UpdateTechnicianProfilePayload, VerifyAccountPayload } from "@/types";
+import { IApiResponse, IAssignmentsResponse, TechnicianApplicationPayload, UpdateOutageStatusPayload, UpdateTechnicianProfilePayload, VerifyAccountPayload } from "@/types";
 
 export function applyAsTechnician(
   payload: TechnicianApplicationPayload,
@@ -28,4 +28,24 @@ export function verifyTechnicianAccount(
 
 export function updateTechnicianProfile(payload : UpdateTechnicianProfilePayload) {
   return apiClient("/technician/update-my-profile", { method: "PATCH", body: payload });
+}
+
+export function getMyAssignments(params?: {
+  page?: number;
+  limit?: number;
+}) {
+  return apiClient<IApiResponse<IAssignmentsResponse>>("/technician/my-assignments", {
+    query: params,
+  });
+}
+
+export function getOutageDetails(id: string) {
+  return apiClient(`/unexpected-outage/${id}`);
+}
+
+export function updateOutageStatus(id: string, payload: UpdateOutageStatusPayload) {
+  return apiClient(`/unexpected-outage/${id}/update-status`, {
+    method: "PATCH",
+    body: payload,
+  });
 }

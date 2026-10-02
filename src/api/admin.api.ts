@@ -65,7 +65,7 @@ export function getAllTechnicians(params?: {
 
 export function approveTechnician(payload: ApproveTechnicianPayload) {
   return apiClient("/technician/approve-technician", {
-    method: "PATCH",
+    method: "POST",
     body: payload,
   });
 }

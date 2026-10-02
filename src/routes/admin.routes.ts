@@ -3,9 +3,7 @@ const prefix = "/admin";
 export const adminRoutes = [
   {
     title: "Overview",
-    items: [
-      { title: "Analytics", url: `${prefix}` },
-    ],
+    items: [{ title: "Analytics", url: `${prefix}` }],
   },
   {
     title: "Management",
@@ -22,5 +20,9 @@ export const adminRoutes = [
       { title: "Scheduled Outages", url: `${prefix}/scheduled-outages` },
       { title: "Unexpected Outages", url: `${prefix}/unexpected-outages` },
     ],
+  },
+  {
+    title: "Payments",
+    items: [{ title: "All Payments", url: `${prefix}/payments` }],
   },
 ];

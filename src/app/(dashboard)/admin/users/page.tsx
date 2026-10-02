@@ -97,7 +97,7 @@ export default function UsersPage() {
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
           className="sm:max-w-xs"
         />
-        <Select value={role} onValueChange={(val) => { setRole(val === "ALL" ? "" : val); setPage(1); }}>
+        <Select value={role} onValueChange={(val) => { setRole(val === "ALL" || !val? "" :  val); setPage(1); }}>
           <SelectTrigger className="sm:max-w-xs">
             <SelectValue placeholder="Filter by role" />
           </SelectTrigger>
@@ -109,7 +109,7 @@ export default function UsersPage() {
             <SelectItem value="SUPER_ADMIN">Super Admin</SelectItem>
           </SelectContent>
         </Select>
-        <Select value={status} onValueChange={(val) => { setStatus(val === "ALL" ? "" : val); setPage(1); }}>
+        <Select value={status} onValueChange={(val) => { setStatus(val === "ALL" || !val? "" :  val); setPage(1); }}>
           <SelectTrigger className="sm:max-w-xs">
             <SelectValue placeholder="Filter by status" />
           </SelectTrigger>

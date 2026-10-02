@@ -94,7 +94,7 @@ export default function TechniciansPage() {
         />
         <Select
           value={verificationStatus}
-          onValueChange={(val) => { setVerificationStatus(val === "ALL" ? "" : val); setPage(1); }}
+          onValueChange={(val) => { setVerificationStatus(val === "ALL" || !val? "" :  val); setPage(1); }}
         >
           <SelectTrigger className="sm:max-w-xs">
             <SelectValue placeholder="Filter by status" />

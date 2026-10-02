@@ -1,5 +1,5 @@
 import { IArea } from "./area.types";
-import { IPackage } from "./payment.types";
+import { IPackage } from "./package.types";
 
 
 export interface IAdminUser {

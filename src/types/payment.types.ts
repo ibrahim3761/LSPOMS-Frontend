@@ -1,12 +1,8 @@
+import { IPackage } from "./package.types";
+
 export type PaymentStatus = "PAID" | "PENDING" | "FAILED" | "CANCELLED";
 
-export interface IPackage {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  durationDays: number;
-}
+
 
 export interface IPremiumUser {
   id: string;

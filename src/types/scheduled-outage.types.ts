@@ -15,3 +15,19 @@ export interface IScheduledOutage {
   updatedAt: string;
   area: IArea;
 }
+
+export interface CreateScheduledOutagePayload {
+  reason: string;
+  startTime: string;
+  endTime: string;
+  areaId: string;
+  technicianId: string;
+}
+
+export interface UpdateScheduledOutagePayload {
+  reason?: string;
+  startTime?: string;
+  endTime?: string;
+  technicianId?: string;
+  status?: "CANCELLED";
+}

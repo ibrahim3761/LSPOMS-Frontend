@@ -6,6 +6,8 @@ import {
   ChangeUserStatusPayload,
   CreateAreaPayload,
   UpdateAreaPayload,
+  CreateScheduledOutagePayload,
+  UpdateScheduledOutagePayload,
 } from "@/types";
 
 // Analytics
@@ -76,4 +78,29 @@ export function getAllPayments(params?: {
   limit?: number;
 }) {
   return apiClient("/payment/all", { query: params });
+}
+
+//schedule outages
+export function getAllScheduledOutages(params?: {
+  page?: number;
+  limit?: number;
+  status?: string;
+}) {
+  return apiClient("/scheduled-outage/all", { query: params });
+}
+
+export function getSingleScheduledOutage(id: string) {
+  return apiClient(`/scheduled-outage/${id}`);
+}
+
+export function createScheduledOutage(payload: CreateScheduledOutagePayload) {
+  return apiClient("/scheduled-outage/create", { method: "POST", body: payload });
+}
+
+export function updateScheduledOutage(id: string, payload: UpdateScheduledOutagePayload) {
+  return apiClient(`/scheduled-outage/${id}`, { method: "PATCH", body: payload });
+}
+
+export function deleteScheduledOutage(id: string) {
+  return apiClient(`/scheduled-outage/${id}`, { method: "DELETE" });
 }

@@ -10,12 +10,19 @@ import {
   getAllTechnicians,
   approveTechnician,
   getAllPayments,
+  getAllScheduledOutages,
+  getSingleScheduledOutage,
+  createScheduledOutage,
+  updateScheduledOutage,
+  deleteScheduledOutage,
 } from "@/api";
 import {
   ApproveTechnicianPayload,
   ChangeUserStatusPayload,
   CreateAreaPayload,
+  CreateScheduledOutagePayload,
   UpdateAreaPayload,
+  UpdateScheduledOutagePayload,
 } from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -112,5 +119,45 @@ export function useGetAllPayments(params?: {
   return useQuery({
     queryKey: ["admin-payments", params],
     queryFn: () => getAllPayments(params),
+  });
+}
+
+// scheduled Outages
+export function useGetAllScheduledOutages(params?: {
+  page?: number;
+  limit?: number;
+  status?: string;
+}) {
+  return useQuery({
+    queryKey: ["admin-scheduled-outages", params],
+    queryFn: () => getAllScheduledOutages(params),
+  });
+}
+
+export function useGetSingleScheduledOutage(id: string) {
+  return useQuery({
+    queryKey: ["scheduled-outage", id],
+    queryFn: () => getSingleScheduledOutage(id),
+    enabled: !!id,
+  });
+}
+
+export function useCreateScheduledOutage() {
+  return useMutation({
+    mutationFn: (payload: CreateScheduledOutagePayload) =>
+      createScheduledOutage(payload),
+  });
+}
+
+export function useUpdateScheduledOutage() {
+  return useMutation({
+    mutationFn: ({ id, payload }: { id: string; payload: UpdateScheduledOutagePayload }) =>
+      updateScheduledOutage(id, payload),
+  });
+}
+
+export function useDeleteScheduledOutage() {
+  return useMutation({
+    mutationFn: (id: string) => deleteScheduledOutage(id),
   });
 }

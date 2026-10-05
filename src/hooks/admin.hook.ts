@@ -115,13 +115,10 @@ export function useApproveTechnician() {
 }
 
 // Payments
-export function useGetAllPayments(params?: {
-  page?: number;
-  limit?: number;
-}) {
+export function useGetAllPayments() {
   return useQuery({
-    queryKey: ["admin-payments", params],
-    queryFn: () => getAllPayments(params),
+    queryKey: ["admin-payments"],
+    queryFn: () => getAllPayments(),
   });
 }
 

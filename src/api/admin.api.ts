@@ -73,11 +73,8 @@ export function approveTechnician(payload: ApproveTechnicianPayload) {
 }
 
 // Payments
-export function getAllPayments(params?: {
-  page?: number;
-  limit?: number;
-}) {
-  return apiClient("/payment/all", { query: params });
+export function getAllPayments() {
+  return apiClient("/payment/all");
 }
 
 //schedule outages

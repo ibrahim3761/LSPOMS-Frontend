@@ -1,3 +1,4 @@
+import { IArea } from "./area.types";
 import { IPackage } from "./package.types";
 
 export type PaymentStatus = "PAID" | "PENDING" | "FAILED" | "CANCELLED";
@@ -10,11 +11,12 @@ export interface IPremiumUser {
   startDate: string;
   expiresAt: string;
   package: IPackage;
-  area: {
+  area: IArea;
+  user: {
     id: string;
     name: string;
-    district: string;
-    city: string;
+    email: string;
+    imageUrl: string;
   };
 }
 
@@ -24,9 +26,12 @@ export interface IPayment {
   status: PaymentStatus;
   bkashPaymentId: string | null;
   bkashTrxId: string | null;
+  merchantInvoiceNumber: string | null;
   payerReference: string | null;
   paidAt: string | null;
+  gatewayResponse: Record<string, string> | null;
+  premiumUserId: string | null;
   createdAt: string;
   updatedAt: string;
-  premiumUser: IPremiumUser;
+  premiumUser: IPremiumUser | null;
 }

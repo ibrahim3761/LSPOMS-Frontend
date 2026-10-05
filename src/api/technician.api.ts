@@ -44,7 +44,7 @@ export function getOutageDetails(id: string) {
 }
 
 export function updateOutageStatus(id: string, payload: UpdateOutageStatusPayload) {
-  return apiClient(`/unexpected-outage/${id}/update-status`, {
+  return apiClient(`/technician/${id}/update-status`, {
     method: "PATCH",
     body: payload,
   });

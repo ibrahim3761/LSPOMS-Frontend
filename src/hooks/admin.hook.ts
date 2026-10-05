@@ -15,6 +15,9 @@ import {
   createScheduledOutage,
   updateScheduledOutage,
   deleteScheduledOutage,
+  getAllUnexpectedOutages,
+  assignTechnician,
+  deleteUnexpectedOutage,
 } from "@/api";
 import {
   ApproveTechnicianPayload,
@@ -159,5 +162,31 @@ export function useUpdateScheduledOutage() {
 export function useDeleteScheduledOutage() {
   return useMutation({
     mutationFn: (id: string) => deleteScheduledOutage(id),
+  });
+}
+
+// Unexpected Outages
+export function useGetAllUnexpectedOutages(params?: {
+  page?: number;
+  limit?: number;
+  status?: string;
+  search?: string;
+}) {
+  return useQuery({
+    queryKey: ["admin-unexpected-outages", params],
+    queryFn: () => getAllUnexpectedOutages(params),
+  });
+}
+
+export function useAssignTechnician() {
+  return useMutation({
+    mutationFn: ({ id, technicianId }: { id: string; technicianId: string }) =>
+      assignTechnician(id, { technicianId }),
+  });
+}
+
+export function useDeleteUnexpectedOutage() {
+  return useMutation({
+    mutationFn: (id: string) => deleteUnexpectedOutage(id),
   });
 }

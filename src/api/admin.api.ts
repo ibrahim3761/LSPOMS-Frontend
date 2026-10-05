@@ -104,3 +104,24 @@ export function updateScheduledOutage(id: string, payload: UpdateScheduledOutage
 export function deleteScheduledOutage(id: string) {
   return apiClient(`/scheduled-outage/${id}`, { method: "DELETE" });
 }
+
+//Unexpected outages
+export function getAllUnexpectedOutages(params?: {
+  page?: number;
+  limit?: number;
+  status?: string;
+  search?: string;
+}) {
+  return apiClient("/unexpected-outage/all", { query: params });
+}
+
+export function assignTechnician(id: string, payload: { technicianId: string }) {
+  return apiClient(`/unexpected-outage/${id}/assign`, {
+    method: "PATCH",
+    body: payload,
+  });
+}
+
+export function deleteUnexpectedOutage(id: string) {
+  return apiClient(`/unexpected-outage/${id}`, { method: "DELETE" });
+}

@@ -1,3 +1,4 @@
+import PackagesSection from "@/components/modules/homepage/packages-section";
 import { createMetadata } from "@/utils";
 
 export const metadata = createMetadata({
@@ -9,7 +10,7 @@ export const metadata = createMetadata({
 export default function HomePage() {
     return (
         <div>
-            <h1>This is Homepage</h1>
+            <PackagesSection/>
         </div>
     );
 }

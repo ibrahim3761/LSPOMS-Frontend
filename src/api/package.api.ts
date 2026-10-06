@@ -5,6 +5,10 @@ export function getAllPackages(params?: { page?: number; limit?: number }) {
   return apiClient("/premium-package/all", { query: params });
 }
 
+export function getPublicPackages(params?: { page?: number; limit?: number }) {
+  return apiClient("/premium-package/public/all", { query: params });
+}
+
 export function getSinglePackage(id: string) {
   return apiClient(`/premium-package/${id}`);
 }

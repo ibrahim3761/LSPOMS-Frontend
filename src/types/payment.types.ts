@@ -35,3 +35,8 @@ export interface IPayment {
   updatedAt: string;
   premiumUser: IPremiumUser | null;
 }
+
+export interface BuyPremiumPayload {
+  packageId: string;
+  areaId: string;
+}

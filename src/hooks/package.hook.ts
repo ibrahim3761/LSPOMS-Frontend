@@ -3,6 +3,7 @@ import {
   createPackage,
   updatePackage,
   deletePackage,
+  getPublicPackages,
 } from "@/api";
 import { CreatePackagePayload, UpdatePackagePayload } from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -11,6 +12,13 @@ export function useGetAllPackages(params?: { page?: number; limit?: number }) {
   return useQuery({
     queryKey: ["packages", params],
     queryFn: () => getAllPackages(params),
+  });
+}
+
+export function useGetPublicPackages(params?: { page?: number; limit?: number }) {
+  return useQuery({
+    queryKey: ["packages", params],
+    queryFn: () => getPublicPackages(params),
   });
 }
 

@@ -60,7 +60,7 @@ export default function ReportOutageForm() {
                         description: "Your report has been submitted successfully",
                         type: "success",
                     });
-                    queryClient.invalidateQueries({ queryKey: ["my-reports"] });
+                    queryClient.invalidateQueries({ queryKey: ["my-reports","unexpected-outages-by-area"] });
                     router.push("/dashboard/my-reports");
                 },
                 onError: (err) => {

@@ -1,3 +1,4 @@
+import HeroSection from "@/components/modules/homepage/Hero";
 import PackagesSection from "@/components/modules/homepage/packages-section";
 import { createMetadata } from "@/utils";
 
@@ -10,6 +11,7 @@ export const metadata = createMetadata({
 export default function HomePage() {
     return (
         <div>
+            <HeroSection/>
             <PackagesSection/>
         </div>
     );

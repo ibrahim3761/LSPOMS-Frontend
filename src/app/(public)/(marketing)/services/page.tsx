@@ -71,7 +71,7 @@ const audiences = [
     description:
       "Report outages, check schedules for your area, and follow a report from submission to resolution.",
     actions: [
-      { label: "Report an outage", href: "/outages" },
+      { label: "Report an outage", href: "/dashboard/report-outage" },
       { label: "Create an account", href: "/register" },
     ],
   },

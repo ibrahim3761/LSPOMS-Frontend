@@ -15,9 +15,9 @@ import { cn } from "@/lib/utils";
 
 const routes = [
     { name: "Home", url: "/" },
-    { name: "About", url: "/about-us" },
-    { name: "Services", url: "/services" },
     { name: "Outages", url: "/outages" },
+    { name: "Services", url: "/services" },
+    { name: "About", url: "/about-us" },
     { name: "Contact", url: "/contact" },
 ];
 

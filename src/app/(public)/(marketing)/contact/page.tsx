@@ -76,7 +76,7 @@ export default function ContactPage() {
               works best for you.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button size="lg" render={<Link href="/outages" />} nativeButton={false}>
+              <Button size="lg" render={<Link href="/dashboard/report-outage" />} nativeButton={false}>
                 Report an outage
               </Button>
               <Button

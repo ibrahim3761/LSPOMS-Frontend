@@ -88,7 +88,7 @@ export default function AboutUsPage() {
             <div className="flex flex-wrap gap-3">
               <Button
                 size="lg"
-                render={<Link href="/outages" />}
+                render={<Link href="/dashbaord/report-outage" />}
                 nativeButton={false}
               >
                 Report an outage

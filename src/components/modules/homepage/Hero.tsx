@@ -8,7 +8,7 @@ const container = "max-w-screen-2xl mx-auto px-6 lg:px-10";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 to-background py-20 dark:from-indigo-950/20">
+    <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 to-background py-8 lg:py-20 dark:from-indigo-950/20">
       <div className={container}>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Text */}
@@ -70,7 +70,7 @@ export default function HeroSection() {
             {/* Decorative blurred accent behind the image */}
             <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-indigo-400/30 via-indigo-300/10 to-transparent blur-2xl" />
 
-            <div className="relative aspect-[4/3] max-h-[420px] overflow-hidden rounded-3xl border bg-muted shadow-xl">
+            <div className="relative aspect-[4/3] max-h-[420px] overflow-hidden rounded-3xl border bg-muted shadow-xl hidden lg:block">
               <Image
                 src="/images/high.webp"
                 alt="A technician working on power lines"

@@ -36,7 +36,7 @@ export default function PackagesSection() {
 
   return (
     <section className="py-16 px-4">
-      <div className="max-w-5xl mx-auto flex flex-col gap-8">
+      <div className="max-w-6xl mx-auto w-full flex flex-col gap-8">
         <div className="text-center flex flex-col gap-2">
           <h2 className="text-3xl font-bold tracking-tight">Premium Plans</h2>
           <p className="text-muted-foreground">

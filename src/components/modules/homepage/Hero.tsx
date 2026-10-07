@@ -66,17 +66,17 @@ export default function HeroSection() {
           </div>
 
           {/* Image */}
-          <div className="relative mx-auto w-full max-w-md lg:max-w-lg">
+          <div className="relative w-full lg:ml-auto lg:max-w-lg">
             {/* Decorative blurred accent behind the image */}
             <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-indigo-400/30 via-indigo-300/10 to-transparent blur-2xl" />
 
-            <div className="relative aspect-[4/3] max-h-[420px] overflow-hidden rounded-3xl border bg-muted shadow-xl hidden lg:block">
+            <div className="relative aspect-[4/3] max-h-[420px] overflow-hidden rounded-3xl border bg-muted shadow-xl">
               <Image
                 src="/images/high.webp"
                 alt="A technician working on power lines"
                 fill
                 priority
-                sizes="(min-width: 1024px) 480px, 90vw"
+                sizes="(min-width: 1024px) 512px, 90vw"
                 className="object-cover"
               />
             </div>

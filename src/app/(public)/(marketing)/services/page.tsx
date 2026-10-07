@@ -121,7 +121,7 @@ export default function ServicesPage() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border bg-muted">
             <Image
-              src="/images/services.jfif"
+              src="/images/services.webp"
               alt="A technician checking an electrical panel"
               fill
               priority

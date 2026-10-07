@@ -1,3 +1,4 @@
+import FeaturesSection from "@/components/modules/homepage/features-section";
 import HeroSection from "@/components/modules/homepage/Hero";
 import PackagesSection from "@/components/modules/homepage/packages-section";
 import { createMetadata } from "@/utils";
@@ -12,6 +13,7 @@ export default function HomePage() {
     return (
         <div>
             <HeroSection/>
+            <FeaturesSection/>
             <PackagesSection/>
         </div>
     );

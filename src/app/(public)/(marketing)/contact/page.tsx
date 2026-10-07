@@ -92,7 +92,7 @@ export default function ContactPage() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border bg-muted">
             <Image
-              src="/images/support.jfif"
+              src="/images/support.webp"
               alt="A support team member at a desk"
               fill
               priority
@@ -145,7 +145,7 @@ export default function ContactPage() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border bg-muted lg:aspect-auto">
             <Image
-              src="/images/office.jfif"
+              src="/images/office.webp"
               alt="The LSPOMS office building"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

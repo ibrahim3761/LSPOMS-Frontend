@@ -65,11 +65,11 @@ export default function PaymentsTable({
                                 onClick={() => onRowClick(payment.id)}
                             >
                                 <TableCell className="font-medium">
-                                    {payment.premiumUser.package.name}
+                                    {payment?.premiumUser?.package.name}
                                 </TableCell>
                                 <TableCell>
-                                    {payment.premiumUser.area.name},{" "}
-                                    {payment.premiumUser.area.district}
+                                    {payment?.premiumUser?.area.name},{" "}
+                                    {payment?.premiumUser?.area.district}
                                 </TableCell>
                                 <TableCell>৳{payment.amount}</TableCell>
                                 <TableCell>

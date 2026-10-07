@@ -45,14 +45,14 @@ export default function PaymentDetailModal({
                             <Skeleton key={i} className="h-4 w-full" />
                         ))}
                     </div>
-                ) : detail ? (
+                ) : detail && detail.premiumUser ? (
                     <div className="flex flex-col gap-3 text-sm">
                         <DetailRow label="Payment ID" value={detail.id} />
                         <Separator />
-                        <DetailRow label="Package" value={detail.premiumUser.package.name} />
+                        <DetailRow label="Package" value={detail?.premiumUser?.package.name} />
                         <DetailRow
                             label="Area"
-                            value={`${detail.premiumUser.area.name}, ${detail.premiumUser.area.district}`}
+                            value={`${detail?.premiumUser?.area.name}, ${detail?.premiumUser?.area.district}`}
                         />
                         <DetailRow label="Amount" value={`৳${detail.amount}`} />
                         <DetailRow

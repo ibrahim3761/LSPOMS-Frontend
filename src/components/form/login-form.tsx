@@ -33,8 +33,8 @@ export default function LoginForm() {
 
     const form = useForm({
         defaultValues: {
-            email: "superadmin@gmail.com",
-            password: "Super@admin1234",
+            email: "",
+            password: "",
         },
         validators: {
             onSubmit: loginSchema,
@@ -185,6 +185,7 @@ export default function LoginForm() {
                                         value={field.state.value}
                                         autoComplete="off"
                                         aria-invalid={isInvalid}
+                                        placeholder="Enter your email"
                                     />
                                     {isInvalid && <FieldError errors={field.state.meta.errors} />}
                                 </Field>
@@ -210,6 +211,7 @@ export default function LoginForm() {
                                             value={field.state.value}
                                             autoComplete="off"
                                             aria-invalid={isInvalid}
+                                            placeholder="Enter your password"
                                         />
                                         <button
                                             className="absolute right-3 top-1/2 -translate-y-1/2"

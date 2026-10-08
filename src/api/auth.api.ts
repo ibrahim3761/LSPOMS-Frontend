@@ -1,5 +1,5 @@
 
-import apiClient from "@/lib/apiClient";
+import {apiClient} from "@/lib/apiClient";
 import { LoginPayload, RegistrationPayload, VerifyAccountPayload } from "@/types";
 
 export function userLogin(payload: LoginPayload) {

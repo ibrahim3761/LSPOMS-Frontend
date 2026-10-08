@@ -1,4 +1,4 @@
-import apiClient from "@/lib/apiClient";
+import {apiClient} from "@/lib/apiClient";
 import { CreatePackagePayload, UpdatePackagePayload } from "@/types";
 
 export function getAllPackages(params?: { page?: number; limit?: number }) {

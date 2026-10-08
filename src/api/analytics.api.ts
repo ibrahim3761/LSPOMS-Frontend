@@ -1,4 +1,4 @@
-import apiClient from "@/lib/apiClient";
+import {apiClient} from "@/lib/apiClient";
 import { ITechnicianAnalytics } from "@/types";
 import { ICustomerAnalytics } from "@/types/analytics.types";
 import { IApiResponse } from "@/types/common.types";

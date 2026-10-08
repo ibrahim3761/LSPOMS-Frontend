@@ -1,6 +1,6 @@
 // technician.api.ts
 
-import apiClient from "@/lib/apiClient";
+import {apiClient} from "@/lib/apiClient";
 import { IApiResponse, IAssignmentsResponse, TechnicianApplicationPayload, UpdateOutageStatusPayload, UpdateTechnicianProfilePayload, VerifyAccountPayload } from "@/types";
 
 export function applyAsTechnician(

@@ -28,8 +28,8 @@ export default function LoginForm() {
     const queryClient = useQueryClient();
 
     const { mutate: login, isPending: loginPending } = useLogin();
-    const { mutate: forgotPassword, isPending: forgotPending } =
-        useForgotPassword();
+    const { mutate: forgotPassword, isPending: forgotPending } = useForgotPassword();
+    const [demoLoading, setDemoLoading] = useState<string | null>(null);
 
     const form = useForm({
         defaultValues: {
@@ -108,6 +108,49 @@ export default function LoginForm() {
         );
     };
 
+    const handleDemoLogin = (role: "admin" | "customer" | "technician") => {
+        const credentials = {
+            admin: {
+                email: process.env.NEXT_PUBLIC_DEMO_ADMIN_EMAIL ?? "",
+                password: process.env.NEXT_PUBLIC_DEMO_ADMIN_PASSWORD ?? "",
+            },
+            customer: {
+                email: process.env.NEXT_PUBLIC_DEMO_CUSTOMER_EMAIL ?? "",
+                password: process.env.NEXT_PUBLIC_DEMO_CUSTOMER_PASSWORD ?? "",
+            },
+            technician: {
+                email: process.env.NEXT_PUBLIC_DEMO_TECHNICIAN_EMAIL ?? "",
+                password: process.env.NEXT_PUBLIC_DEMO_TECHNICIAN_PASSWORD ?? "",
+            },
+        };
+
+        setDemoLoading(role);
+
+        login(credentials[role], {
+            onSuccess: (res) => {
+                const { accessToken, refreshToken } = res.data;
+                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("refreshToken", refreshToken);
+                queryClient.invalidateQueries({ queryKey: ["user"] });
+                toast.add({
+                    title: "Demo Login Success",
+                    description: `Logged in as ${role}`,
+                    type: "success",
+                });
+                router.push("/");
+            },
+            onError: (err) => {
+                toast.add({
+                    title: "Demo Login Failed",
+                    description: getErrorMessage(err),
+                    type: "error",
+                });
+            },
+            onSettled: () => {
+                setDemoLoading(null);
+            },
+        });
+    };
     return (
         <div className="flex flex-col gap-5">
             <div className="flex flex-col items-center gap-2 text-center">
@@ -221,6 +264,44 @@ export default function LoginForm() {
                 >
                     Register
                 </Link>
+            </div>
+            {/* Demo login */}
+            <div className="flex flex-col gap-3">
+                <p className="text-center text-xs text-muted-foreground">
+                    Try a demo account
+                </p>
+                <div className="grid grid-cols-3 gap-2">
+                    <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        disabled={!!demoLoading || loginPending}
+                        onClick={() => handleDemoLogin("admin")}
+                        className="text-xs"
+                    >
+                        {demoLoading === "admin" ? <Spinner /> : "Admin"}
+                    </Button>
+                    <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        disabled={!!demoLoading || loginPending}
+                        onClick={() => handleDemoLogin("customer")}
+                        className="text-xs"
+                    >
+                        {demoLoading === "customer" ? <Spinner /> : "Customer"}
+                    </Button>
+                    <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        disabled={!!demoLoading || loginPending}
+                        onClick={() => handleDemoLogin("technician")}
+                        className="text-xs"
+                    >
+                        {demoLoading === "technician" ? <Spinner /> : "Technician"}
+                    </Button>
+                </div>
             </div>
         </div>
     );

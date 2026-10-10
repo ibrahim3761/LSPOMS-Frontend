@@ -1,6 +1,6 @@
 # LSPOMS — Load Shedding & Power Outage Management System
 
-A full-stack web application for managing, reporting, and tracking power outages in Bangladesh. Built as a B7A7 frontend assignment.
+A platform where residents can report and track power outages in their area, stay informed about planned load-shedding schedules, and subscribe to real-time alerts. Field technicians manage their repair assignments and update restoration progress, while the system keeps everyone informed from the moment an outage is reported to the moment power is restored.
 
 **Live Demo:** https://your-frontend-url.vercel.app  
 **Backend API:** https://load-shedding-power-outage-manageme.vercel.app  

@@ -10,7 +10,7 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 to-background py-8 lg:py-20 dark:from-indigo-950/20">
       <div className={container}>
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
           {/* Text */}
           <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
             <div className="flex items-center gap-2 rounded-full bg-indigo-100 px-4 py-1.5 text-sm font-medium text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400">
@@ -65,18 +65,18 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Image */}
-          <div className="relative w-full lg:ml-auto lg:max-w-lg">
+          {/* Image (desktop only) */}
+          <div className="relative hidden w-full min-w-0 lg:block">
             {/* Decorative blurred accent behind the image */}
-            <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-indigo-400/30 via-indigo-300/10 to-transparent blur-2xl" />
+            <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-indigo-400/30 via-indigo-300/10 to-transparent blur-2xl" />
 
-            <div className="relative aspect-[4/3] max-h-[420px] overflow-hidden rounded-3xl border bg-muted shadow-xl">
+            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-3xl border bg-muted shadow-xl">
               <Image
                 src="/images/high.webp"
                 alt="A technician working on power lines"
                 fill
                 priority
-                sizes="(min-width: 1024px) 512px, 90vw"
+                sizes="(min-width: 1536px) 780px, 55vw"
                 className="object-cover"
               />
             </div>
